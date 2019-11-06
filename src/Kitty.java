@@ -16,6 +16,12 @@ public class Kitty extends JFrame implements ActionListener{
 	JButton right = new JButton("Right");
 	JButton left = new JButton("Left");
 	
+	//Cardinal Border Placements
+	JPanel topPanel = new JPanel();
+	JPanel bottomPanel = new JPanel();
+	JPanel rightPanel = new JPanel();
+	JPanel leftPanel = new JPanel();
+	
 	//2D array of JPanels
 	private JPanel pane = new JPanel(new GridLayout(ROWS, COLS, GAP, GAP));
 	private JPanel[][] panel = new JPanel[8][8]; //makes a 2d array of 8x8
@@ -33,9 +39,9 @@ public class Kitty extends JFrame implements ActionListener{
 		super("Run Kitty Run");
 		setSize(SIZE, SIZE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
 		
-		//add the pane to the content pane
-		add(pane);
+		//Creates the checkerboard and sets the colors
 		for(int x = 0; x < ROWS; x++) {
 			for(int y = 0; y < COLS; y++) {
 				panel[x][y] = new JPanel(); //Inits the panel
@@ -61,7 +67,33 @@ public class Kitty extends JFrame implements ActionListener{
 				
 			}
 		}
-		panel[2][3].add(kittykat);
+		
+		//Set the layout for the panels
+		topPanel.setLayout(new GridLayout(1,1,1,1));
+		bottomPanel.setLayout(new GridLayout(1,1,1,1));
+		rightPanel.setLayout(new GridLayout(1,1,1,1));
+		leftPanel.setLayout(new GridLayout(1,1,1,1));
+		
+		//Set the buttons to the cardinal panels
+		topPanel.add(up);
+		bottomPanel.add(down);
+		rightPanel.add(right);
+		leftPanel.add(left);
+		
+		//Add the actionlisteners to the buttons
+		up.addActionListener(this);
+		down.addActionListener(this);
+		right.addActionListener(this);
+		left.addActionListener(this);
+		
+		//add the pane to the content pane
+		add(pane, BorderLayout.CENTER);
+		add(topPanel, BorderLayout.NORTH);
+		add(bottomPanel, BorderLayout.SOUTH);
+		add(rightPanel, BorderLayout.EAST);
+		add(leftPanel, BorderLayout.WEST);
+		
+		panel[2][3].add(kittykat); // for testing pruposes
 		
 	}
 	
