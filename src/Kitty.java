@@ -110,22 +110,28 @@ public class Kitty extends JFrame implements ActionListener{
 		if(source == up) {
 			//keep it within the border
 			if(initialRow > 0) {
-				
+				labels[initialRow][initialCol].setText("");
 				initialRow -= 1;
 				labels[initialRow][initialCol].setText("=^.^=");
 			}
 		}else if(source == down) {
 			//keep it within the border
 			if(initialRow < 7) {
+				labels[initialRow][initialCol].setText("");
 				initialRow += 1;
+				labels[initialRow][initialCol].setText("=^.^=");
 			}
 		}else if(source == right) {
-			if(initialCol > 0) {
+			if(initialCol >= 0 && initialCol < 7) {
+				labels[initialRow][initialCol].setText("");
 				initialCol += 1;
+				labels[initialRow][initialCol].setText("=^.^=");
 			}
 		}else if(source == left) {
-			if(initialCol < 7) {
+			if(initialCol <= 7 && initialCol > 0) {
+				labels[initialRow][initialCol].setText("");
 				initialCol -= 1;
+				labels[initialRow][initialCol].setText("=^.^=");
 			}
 		}
 	}
