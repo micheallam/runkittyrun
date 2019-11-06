@@ -103,9 +103,23 @@ public class Kitty extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if(source == up) {
-			panel[initialRow][initialCol].remove(kittykat);
-			initialRow += 1;
-			panel[initialRow][initialCol].add(kittykat);
+			//keep it within the border
+			if(initialRow > 0) {
+				initialRow -= 1;
+			}
+		}else if(source == down) {
+			//keep it within the border
+			if(initialRow < 7) {
+				initialRow += 1;
+			}
+		}else if(source == right) {
+			if(initialCol > 0) {
+				initialCol += 1;
+			}
+		}else if(source == left) {
+			if(initialCol < 7) {
+				initialCol -= 1;
+			}
 		}
 	}
 
