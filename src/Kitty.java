@@ -9,6 +9,8 @@ public class Kitty extends JFrame implements ActionListener{
 	final private int COLS = 8;
 	final private int GAP = 2;
 	final private int SIZE = 300;
+	private int initialRow = 4;
+	private int initialCol = 4;
 	
 	//Buttons
 	JButton up = new JButton("Up");
@@ -31,7 +33,7 @@ public class Kitty extends JFrame implements ActionListener{
 	
 	//Colors
 	private Color color1 = Color.WHITE;
-	private Color color2 = Color.BLUE;
+	private Color color2 = Color.CYAN;
 	private Color tempColor; //placeholder for the color swapping
 	
 	//Constructor
@@ -93,14 +95,18 @@ public class Kitty extends JFrame implements ActionListener{
 		add(rightPanel, BorderLayout.EAST);
 		add(leftPanel, BorderLayout.WEST);
 		
-		panel[2][3].add(kittykat); // for testing pruposes
+		panel[initialRow][initialCol].add(kittykat); // for testing purposes
 		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
-		
+		if(source == up) {
+			panel[initialRow][initialCol].remove(kittykat);
+			initialRow += 1;
+			panel[initialRow][initialCol].add(kittykat);
+		}
 	}
 
 }
