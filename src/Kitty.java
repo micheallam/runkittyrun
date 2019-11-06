@@ -26,7 +26,8 @@ public class Kitty extends JFrame implements ActionListener{
 	
 	//2D array of JPanels
 	private JPanel pane = new JPanel(new GridLayout(ROWS, COLS, GAP, GAP));
-	private JPanel[][] panel = new JPanel[8][8]; //makes a 2d array of 8x8
+	private JPanel[][] panel = new JPanel[ROWS][COLS]; //makes a 2d array of 8x8
+	private JLabel[][] labels = new JLabel[ROWS][COLS];
 	
 	//The cat face
 	JLabel kittykat = new JLabel("=^.^=");
@@ -47,7 +48,10 @@ public class Kitty extends JFrame implements ActionListener{
 		for(int x = 0; x < ROWS; x++) {
 			for(int y = 0; y < COLS; y++) {
 				panel[x][y] = new JPanel(); //Inits the panel
+				labels[x][y] = new JLabel(); //Inits the labels
+				
 				pane.add(panel[x][y]);
+				pane.add(labels[x][y]);
 				
 				//Shades in the colors for the background of the tile
 				if(x%2 == 0) {
@@ -95,7 +99,8 @@ public class Kitty extends JFrame implements ActionListener{
 		add(rightPanel, BorderLayout.EAST);
 		add(leftPanel, BorderLayout.WEST);
 		
-		panel[initialRow][initialCol].add(kittykat); // for testing purposes
+		//panel[initialRow][initialCol].add(kittykat); // for testing purposes
+		labels[initialRow][initialCol].setText("=^.^=");
 		
 	}
 	
@@ -105,7 +110,9 @@ public class Kitty extends JFrame implements ActionListener{
 		if(source == up) {
 			//keep it within the border
 			if(initialRow > 0) {
+				
 				initialRow -= 1;
+				labels[initialRow][initialCol].setText("=^.^=");
 			}
 		}else if(source == down) {
 			//keep it within the border
