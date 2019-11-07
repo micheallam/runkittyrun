@@ -51,7 +51,7 @@ public class Kitty extends JFrame implements ActionListener{
 				labels[x][y] = new JLabel(); //Inits the labels
 				
 				pane.add(panel[x][y]);
-				pane.add(labels[x][y]);
+				panel[x][y].add(labels[x][y]);
 				
 				//Shades in the colors for the background of the tile
 				if(x%2 == 0) {
